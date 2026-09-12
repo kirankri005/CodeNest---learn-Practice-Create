@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Basic Coding | CodeNest</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.7;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            background: #101827;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #164e63);
+            color: white;
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .hero small {
+            color: #7dd3fc;
+            font-size: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin: 15px 0;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #dbeafe;
+            font-size: 18px;
+        }
+
+        /* MAIN */
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .lesson {
+            background: white;
+            padding: 35px;
+            margin-bottom: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .lesson h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .lesson h2 span {
+            color: #0284c7;
+        }
+
+        .lesson p {
+            color: #475569;
+            margin-bottom: 15px;
+        }
+
+        /* SPECIAL BOX */
+
+        .idea {
+            background: #e0f2fe;
+            border-left: 5px solid #0284c7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .idea strong {
+            color: #0369a1;
+        }
+
+        /* EXAMPLE */
+
+        .example {
+            background: #020617;
+            color: white;
+            padding: 25px;
+            border-radius: 14px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .example-title {
+            color: #7dd3fc;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .code {
+            color: #bae6fd;
+            font-family: monospace;
+            font-size: 15px;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .card {
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+        }
+
+        .card .emoji {
+            font-size: 32px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .card p {
+            font-size: 14px;
+        }
+
+        /* JOURNEY */
+
+        .journey {
+            background: #0f172a;
+            color: white;
+            padding: 40px;
+            border-radius: 18px;
+        }
+
+        .journey h2 {
+            margin-bottom: 20px;
+        }
+
+        .journey-item {
+            padding: 18px;
+            margin: 12px 0;
+            background: #1e293b;
+            border-radius: 10px;
+        }
+
+        .number {
+            color: #38bdf8;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* BUTTON */
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 22px;
+            background: #38bdf8;
+            color: #082f49;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #7dd3fc;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #020617;
+            color: #94a3b8;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .lesson {
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<header>
+
+    <div class="logo">
+        Code<span>Nest</span>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#coding">Coding</a>
+        <a href="#languages">Languages</a>
+        <a href="#journey">Journey</a>
+    </nav>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <small>CODENEST • START HERE</small>
+
+    <h1>
+        Coding, from <span>Zero.</span>
+    </h1>
+
+    <p>
+        Before writing hundreds of lines of code,
+        let's understand what coding actually is,
+        why people use it, and how a complete beginner
+        can start thinking like a programmer.
+    </p>
+
+</section>
+
+
+
+<main>
+
+
+<!-- SECTION 1 -->
+
+<section class="lesson" id="coding">
+
+    <h2>
+        💡 What exactly is <span>coding?</span>
+    </h2>
+
+    <p>
+        Coding is the process of writing instructions that
+        tell a computer what to do.
+    </p>
+
+    <p>
+        Think about giving instructions to a person.
+        If you say, "Open the door, pick up the book,
+        and put it on the table," you are giving a sequence
+        of instructions.
+    </p>
+
+    <p>
+        Coding works in a similar way — except the computer
+        needs those instructions written in a language it can understand.
+    </p>
+
+
+    <div class="idea">
+
+        <strong>🌱 Beginner idea:</strong>
+
+        <p>
+            A computer is extremely powerful, but it does not
+            simply "guess" what you mean. Your instructions need
+            to be clear and logically written.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- SECTION 2 -->
+
+<section class="lesson">
+
+    <h2>
+        🧠 Coding is really about <span>problem solving</span>
+    </h2>
+
+    <p>
+        Many beginners think programming is mainly about
+        memorising commands.
+    </p>
+
+    <p>
+        It isn't.
+    </p>
+
+    <p>
+        A good programmer first thinks about the problem,
+        breaks it into smaller steps, and then uses code
+        to solve those steps.
+    </p>
+
+
+    <div class="idea">
+
+        <strong>For example:</strong>
+
+        <p>
+            Imagine you want a program that tells you whether
+            a number is even or odd.
+        </p>
+
+        <p>
+            First think → Take a number → Check it → Give an answer.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- SECTION 3 -->
+
+<section class="lesson">
+
+    <h2>
+        🔄 How does code become an <span>action?</span>
+    </h2>
+
+    <p>
+        You write instructions → the computer processes them →
+        the program produces a result.
+    </p>
+
+
+    <div class="example">
+
+        <div class="example-title">
+            A very simple idea
+        </div>
+
+        <div class="code">
+
+            Input → Process → Output
+
+            <br><br>
+
+            5 + 3 → Computer calculates → 8
+
+        </div>
+
+    </div>
+
+    <div class="idea">
+
+        <strong>Remember this:</strong>
+
+        <p>
+            Most programs can be understood using the simple
+            idea of <b>Input → Process → Output.</b>
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- SECTION 4 -->
+
+<section class="lesson" id="languages">
+
+    <h2>
+        🌐 What are <span>programming languages?</span>
+    </h2>
+
+    <p>
+        Humans communicate using languages such as English,
+        Hindi, or other languages.
+    </p>
+
+    <p>
+        Computers also need specially designed languages
+        for instructions.
+    </p>
+
+    <p>
+        These are called programming languages.
+    </p>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="emoji">🌐</div>
+
+            <h3>HTML</h3>
+
+            <p>
+                Used to structure the content of webpages.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="emoji">🎨</div>
+
+            <h3>CSS</h3>
+
+            <p>
+                Used to style and design webpages.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="emoji">⚡</div>
+
+            <h3>JavaScript</h3>
+
+            <p>
+                Used to make webpages interactive and dynamic.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="emoji">🐍</div>
+
+            <h3>Python</h3>
+
+            <p>
+                A beginner-friendly programming language
+                used in many areas of technology.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SECTION 5 -->
+
+<section class="lesson">
+
+    <h2>
+        🏗️ What can you actually <span>build?</span>
+    </h2>
+
+    <p>
+        Coding isn't only about sitting in front of a screen
+        and typing strange symbols.
+    </p>
+
+    <p>
+        It can become a tool for turning ideas into real things.
+    </p>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="emoji">🌍</div>
+            <h3>Websites</h3>
+            <p>Create websites and online platforms.</p>
+        </div>
+
+
+        <div class="card">
+            <div class="emoji">📱</div>
+            <h3>Applications</h3>
+            <p>Build useful software and applications.</p>
+        </div>
+
+
+        <div class="card">
+            <div class="emoji">🎮</div>
+            <h3>Games</h3>
+            <p>Turn ideas into interactive games.</p>
+        </div>
+
+
+        <div class="card">
+            <div class="emoji">🤖</div>
+            <h3>Technology</h3>
+            <p>Explore automation, AI and other technologies.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SECTION 6 -->
+
+<section class="lesson">
+
+    <h2>
+        🚀 Why should a beginner learn <span>coding?</span>
+    </h2>
+
+    <p>
+        Learning to code can develop more than your ability
+        to write programs.
+    </p>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="emoji">🧩</div>
+
+            <h3>Logical Thinking</h3>
+
+            <p>
+                Learn to break complicated problems
+                into smaller pieces.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="emoji">💡</div>
+
+            <h3>Creativity</h3>
+
+            <p>
+                Turn your own ideas into something people
+                can actually use.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="emoji">🔎</div>
+
+            <h3>Curiosity</h3>
+
+            <p>
+                Understand how digital tools and websites
+                work behind the screen.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="emoji">🛠️</div>
+
+            <h3>Problem Solving</h3>
+
+            <p>
+                Learn how to approach problems systematically.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SECTION 7 -->
+
+<section class="lesson">
+
+    <h2>
+        👀 Your first tiny piece of code
+    </h2>
+
+    <p>
+        Here is a very small HTML example:
+    </p>
+
+
+    <div class="example">
+
+        <div class="example-title">
+            HTML
+        </div>
+
+        <div class="code">
+
+            &lt;h1&gt;Hello, CodeNest!&lt;/h1&gt;
+
+        </div>
+
+    </div>
+
+
+    <p style="margin-top:20px;">
+
+        This tells the browser to display
+        <b>"Hello, CodeNest!"</b> as a heading.
+    </p>
+
+
+    <div class="idea">
+
+        <strong>Don't memorise it yet.</strong>
+
+        <p>
+            The goal at this stage is simply to understand
+            that code is a set of instructions.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- JOURNEY -->
+
+<section id="journey">
+
+    <div class="journey">
+
+        <h2>
+            🧭 Where should you go from here?
+        </h2>
+
+        <p>
+            You don't need to learn everything at once.
+            Build your knowledge one layer at a time.
+        </p>
+
+
+        <div class="journey-item">
+            <span class="number">01</span>
+            Understand basic computer and coding concepts.
+        </div>
+
+
+        <div class="journey-item">
+            <span class="number">02</span>
+            Learn HTML and create your first webpage.
+        </div>
+
+
+        <div class="journey-item">
+            <span class="number">03</span>
+            Learn CSS and give your webpage a design.
+        </div>
+
+
+        <div class="journey-item">
+            <span class="number">04</span>
+            Learn JavaScript and make things interactive.
+        </div>
+
+
+        <div class="journey-item">
+            <span class="number">05</span>
+            Start building your own projects.
+        </div>
+
+
+        <a href="index.html" class="button">
+            ← Back to CodeNest
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 CodeNest • Learn. Practice. Create.
+    </p>
+
+    <p>
+        Made for curious beginners.
+    </p>
+
+</footer>
+
+<a href="index.html">Home</a>
+  
+</body>
+
+</html>
