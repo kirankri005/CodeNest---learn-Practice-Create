@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeNest | Learn. Practice. Create.</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #101827;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #164e63);
+            color: white;
+            text-align: center;
+            padding: 90px 8%;
+        }
+
+        .hero small {
+            color: #7dd3fc;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin: 15px 0;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #dbeafe;
+            font-size: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 13px 24px;
+            background: #38bdf8;
+            color: #082f49;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #7dd3fc;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 65px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .section-text {
+            text-align: center;
+            color: #64748b;
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+        }
+
+        .icon {
+            font-size: 34px;
+        }
+
+        .card h3 {
+            margin: 12px 0 8px;
+        }
+
+        .card p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .start {
+            background: #e0f2fe;
+            padding: 55px 25px;
+            text-align: center;
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+
+        footer {
+            background: #020617;
+            color: #94a3b8;
+            text-align: center;
+            padding: 28px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Code<span>Nest</span>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="content.html">Start Learning</a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <small>WELCOME TO CODENEST</small>
+
+    <h1>
+        Learn to <span>Code.</span>
+        Create the Future.
+    </h1>
+
+    <p>
+        A beginner-friendly place to understand coding from
+        the very beginning, practice your skills, and turn
+        your ideas into something real.
+    </p>
+
+    <a href="content.html" class="button">
+        Start Your Coding Journey →
+    </a>
+
+</section>
+
+
+<main>
+
+    <h2 class="section-title">
+        Why CodeNest?
+    </h2>
+
+    <p class="section-text">
+        Coding can look complicated when you first see it.
+        CodeNest is designed to make the journey simple,
+        understandable, and interesting.
+    </p>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">🌱</div>
+            <h3>Start From Zero</h3>
+            <p>
+                No previous programming experience is required.
+                Begin with the concepts you actually need.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🧠</div>
+            <h3>Understand, Don't Memorise</h3>
+            <p>
+                Learn why code works instead of simply
+                memorising lines of code.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🛠️</div>
+            <h3>Learn by Building</h3>
+            <p>
+                Gradually turn what you learn into websites,
+                programs, and your own projects.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🚀</div>
+            <h3>Keep Growing</h3>
+            <p>
+                Move from your first tiny program toward
+                bigger and more creative projects.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="start">
+
+        <h2>
+            Ready to understand coding?
+        </h2>
+
+        <p>
+            Take your first step. No pressure. No complicated
+            words. Just start.
+        </p>
+
+        <a href="content.html" class="button">
+            Explore Basic Coding →
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>© 2026 CodeNest</p>
+
+    <p>Learn. Practice. Create.</p>
+
+</footer>
+
+</body>
+</html>
