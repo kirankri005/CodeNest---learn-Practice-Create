@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GK Quiz | CodeNest</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+    color: #1e293b;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+.header {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header p {
+    margin: 8px 0 0;
+    opacity: 0.9;
+}
+
+/* MAIN */
+
+.quiz-container {
+    width: 92%;
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+/* TOP INFORMATION */
+
+.quiz-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.question-count {
+    color: #4f46e5;
+}
+
+.timer {
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+/* PROGRESS BAR */
+
+.progress-background {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 10%;
+    background: linear-gradient(90deg, #4f46e5, #9333ea);
+    transition: width 0.4s ease;
+}
+
+/* QUESTION CARD */
+
+.question-card {
+    background: white;
+    padding: 28px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question-card h2 {
+    font-size: 23px;
+    line-height: 1.4;
+    margin-top: 0;
+}
+
+/* OPTIONS */
+
+.options {
+    margin-top: 25px;
+}
+
+.option {
+    width: 100%;
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    padding: 15px;
+    margin-bottom: 13px;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.option:hover {
+    border-color: #6366f1;
+    background: #eef2ff;
+}
+
+.option.selected {
+    border-color: #4f46e5;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-weight: bold;
+}
+
+/* NEXT BUTTON */
+
+.next-button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.next-button:hover {
+    opacity: 0.9;
+}
+
+.next-button:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+}
+
+/* RESULT SCREEN */
+
+.result-screen {
+    display: none;
+    text-align: center;
+    background: white;
+    padding: 40px 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.result-icon {
+    font-size: 65px;
+}
+
+.result-screen h2 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.score {
+    font-size: 45px;
+    font-weight: bold;
+    color: #4f46e5;
+    margin: 20px 0;
+}
+
+.result-message {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+/* PLAY AGAIN */
+
+.play-again {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.play-again:hover {
+    opacity: 0.9;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 35px;
+    color: #64748b;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .question-card {
+        padding: 20px;
+    }
+
+    .question-card h2 {
+        font-size: 20px;
+    }
+
+    .option {
+        font-size: 15px;
+        padding: 13px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>🧠 GK Quiz</h1>
+
+    <p>Test Your General Knowledge</p>
+
+</div>
+
+
+<div class="quiz-container">
+
+
+    <!-- QUIZ AREA -->
+
+    <div id="quizArea">
+
+        <div class="quiz-top">
+
+            <div class="question-count" id="questionCount">
+                Question 1 of 10
+            </div>
+
+            <div class="timer">
+                ⏱️ <span id="timer">30</span>s
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-background">
+
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION -->
+
+        <div class="question-card">
+
+            <h2 id="question">
+                Question goes here
+            </h2>
+
+
+            <div
+                class="options"
+                id="options">
+            </div>
+
+
+            <button
+                class="next-button"
+                id="nextButton"
+                onclick="nextQuestion()"
+                disabled>
+
+                Next Question →
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESULT SCREEN -->
+
+    <div
+        class="result-screen"
+        id="resultScreen">
+
+        <div class="result-icon">
+            🏆
+        </div>
+
+        <h2>Quiz Completed!</h2>
+
+        <div
+            class="score"
+            id="finalScore">
+            0 / 10
+        </div>
+
+        <div
+            class="result-message"
+            id="resultMessage">
+        </div>
+
+        <button
+            class="play-again"
+            onclick="restartQuiz()">
+
+            🔄 Play Again
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>
+        CodeNest — Learn. Practice. Create.
+    </p>
+
+</footer>
+
+
+<script>
+
+/* QUESTIONS */
+
+const questions = [
+
+    {
+        question: "What is the full form of LLB?",
+        options: [
+            "Legal Law Bachelor",
+            "Legum Baccalaureus",
+            "Bachelor of Legal Learning",
+            "Law and Legal Bachelor"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is the full form of IMF?",
+        options: [
+            "International Monetary Fund",
+            "International Money Federation",
+            "Indian Monetary Fund",
+            "International Market Fund"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Who is the External Affairs Minister of India?",
+        options: [
+            "Amit Shah",
+            "Rajnath Singh",
+            "Dr. Subrahmanyam Jaishankar",
+            "Nitin Gadkari"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Who is the Governor of Bihar?",
+        options: [
+            "Rajendra Arlekar",
+            "Lt. Gen. Syed Ata Hasnain (Retd.)",
+            "Arif Mohammed Khan",
+            "R. N. Ravi"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Who is the Chief Minister of Delhi?",
+        options: [
+            "Atishi",
+            "Rekha Gupta",
+            "Sheila Dikshit",
+            "Smriti Irani"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is the full form of IRS?",
+        options: [
+            "Indian Revenue Service",
+            "Indian Railway Service",
+            "International Revenue Service",
+            "Indian Research Service"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which five countries originally formed BRICS?",
+        options: [
+            "Brazil, Russia, India, China and South Africa",
+            "Britain, Russia, India, China and Spain",
+            "Brazil, Romania, India, Canada and South Africa",
+            "Belgium, Russia, India, China and Sweden"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is the capital of Australia?",
+        options: [
+            "Sydney",
+            "Melbourne",
+            "Canberra",
+            "Perth"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which is the largest planet in our Solar System?",
+        options: [
+            "Earth",
+            "Saturn",
+            "Jupiter",
+            "Neptune"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Who wrote the national anthem of India?",
+        options: [
+            "Bankim Chandra Chattopadhyay",
+            "Rabindranath Tagore",
+            "Sarojini Naidu",
+            "Subhas Chandra Bose"
+        ],
+        answer: 1
+    }
+
+];
+
+
+/* VARIABLES */
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let selectedAnswer = null;
+
+let timeLeft = 30;
+
+let timerInterval;
+
+
+/* LOAD QUESTION */
+
+function loadQuestion() {
+
+    selectedAnswer = null;
+
+    timeLeft = 30;
+
+    document.getElementById("timer").textContent = timeLeft;
+
+    const current = questions[currentQuestion];
+
+
+    /* QUESTION NUMBER */
+
+    document.getElementById("questionCount").textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        questions.length;
+
+
+    /* PROGRESS */
+
+    const progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+
+    /* QUESTION TEXT */
+
+    document.getElementById("question").textContent =
+        current.question;
+
+
+    /* OPTIONS */
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+
+    current.options.forEach((option, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(65 + index) +
+            ". " +
+            option;
+
+        button.onclick = function() {
+
+            selectAnswer(index, button);
+
+        };
+
+        optionsContainer.appendChild(button);
+
+    });
+
+
+    /* DISABLE NEXT */
+
+    document.getElementById("nextButton").disabled = true;
+
+
+    /* START TIMER */
+
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(updateTimer, 1000);
+
+}
+
+
+/* SELECT ANSWER */
+
+function selectAnswer(index, button) {
+
+    selectedAnswer = index;
+
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+
+    allOptions.forEach(option => {
+
+        option.classList.remove("selected");
+
+    });
+
+
+    button.classList.add("selected");
+
+
+    document.getElementById("nextButton").disabled = false;
+
+}
+
+
+/* TIMER */
+
+function updateTimer() {
+
+    timeLeft--;
+
+    document.getElementById("timer").textContent =
+        timeLeft;
+
+
+    if (timeLeft <= 0) {
+
+        clearInterval(timerInterval);
+
+        nextQuestion();
+
+    }
+
+}
+
+
+/* NEXT QUESTION */
+
+function nextQuestion() {
+
+    clearInterval(timerInterval);
+
+
+    /* CHECK ANSWER */
+
+    if (
+        selectedAnswer !== null &&
+        selectedAnswer === questions[currentQuestion].answer
+    ) {
+
+        score++;
+
+    }
+
+
+    currentQuestion++;
+
+
+    if (currentQuestion < questions.length) {
+
+        loadQuestion();
+
+    } else {
+
+        showResult();
+
+    }
+
+}
+
+
+/* RESULT */
+
+function showResult() {
+
+    document.getElementById("quizArea").style.display =
+        "none";
+
+    document.getElementById("resultScreen").style.display =
+        "block";
+
+
+    document.getElementById("finalScore").textContent =
+        score + " / " + questions.length;
+
+
+    let message;
+
+
+    const percentage =
+        (score / questions.length) * 100;
+
+
+    if (percentage === 100) {
+
+        message =
+            "Perfect score! 🎉 You absolutely nailed it!";
+
+    }
+
+    else if (percentage >= 80) {
+
+        message =
+            "Excellent! 🌟 You have great general knowledge.";
+
+    }
+
+    else if (percentage >= 60) {
+
+        message =
+            "Good job! 👍 Keep learning and improving.";
+
+    }
+
+    else if (percentage >= 40) {
+
+        message =
+            "Nice attempt! 📚 A little more practice will help.";
+
+    }
+
+    else {
+
+        message =
+            "Keep practicing! 💪 Every quiz is a chance to learn.";
+
+    }
+
+
+    document.getElementById("resultMessage").textContent =
+        message;
+
+}
+
+
+/* RESTART */
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    selectedAnswer = null;
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+    document.getElementById("quizArea").style.display =
+        "block";
+
+    loadQuestion();
+
+}
+
+
+/* START QUIZ */
+
+loadQuestion();
+
+</script>
+
+</body>
+  </html>
